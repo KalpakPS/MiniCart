@@ -18,7 +18,7 @@ source venv/Scripts/activate
 ```bash
 pip install -r requirements.txt
 ```
-### 4. Run migrations
+### 4. Run migrations (optional)
 ```bash
 python manage.py makemigrations
 python manage.py migrate
