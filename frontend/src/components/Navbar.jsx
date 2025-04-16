@@ -1,20 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext'; // Import CartContext
+import { CartContext } from '../context/CartContext';
 
 const Navbar = () => {
-  const { cartItems } = useContext(CartContext); // Access cartItems from context
+  const { cartItems } = useContext(CartContext);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Calculate total number of items in the cart
   const totalItems = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg px-3" style={{ backgroundColor: '#131921' }}>
+    <nav
+      className={`navbar navbar-expand-lg fixed-top px-3 ${
+        scrolled ? 'navbar-scrolled' : ''
+      }`}
+      style={{
+        backgroundColor: scrolled ? 'rgba(19, 25, 33, 0.9)' : '#131921',
+        transition: 'background-color 0.3s ease',
+      }}
+    >
       <Link className="navbar-brand fw-bold text-white" to="/">
         MiniCart
       </Link>
 
-      {/* Toggler for smaller screens */}
       <button
         className="navbar-toggler"
         type="button"
@@ -28,8 +43,7 @@ const Navbar = () => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ms-auto">
-        </ul>
+        <ul className="navbar-nav ms-auto"></ul>
       </div>
 
       <Link className="nav-link text-white d-flex align-items-center" to="/cart">

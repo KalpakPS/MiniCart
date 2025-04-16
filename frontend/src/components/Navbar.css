@@ -1,0 +1,12 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+    transition: background-color 0.3s ease;
+}
+  
+.navbar-scrolled {
+    background-color: rgba(19, 25, 33, 0.8) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
