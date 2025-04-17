@@ -43,3 +43,9 @@ npm install bootstrap react-router-dom
 npm run dev
 ```
 This will run the frontend at ``http://localhost:5173/``
+
+# Demo
+
+https://github.com/user-attachments/assets/173f9ab5-b1a1-4353-871e-f6c0beb061d8
+
+
